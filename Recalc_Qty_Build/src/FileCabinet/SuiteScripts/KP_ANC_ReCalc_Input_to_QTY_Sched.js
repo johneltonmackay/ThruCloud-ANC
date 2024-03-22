@@ -16,7 +16,6 @@ function(search,record,query, format, email) {
      */
     function execute(scriptContext) {
         log.debug('Scheduled Script TEST', 'Scheduled Script Executed');
-
         var customlist305SearchColName = search.createColumn({ name: 'name', sort: search.Sort.ASC });
         var customlist305SearchColInternalId = search.createColumn({ name: 'internalid' });
 
@@ -407,18 +406,17 @@ function(search,record,query, format, email) {
                                 catch (e){
                                     log.error({
                                         title: e.name,
-                                        details: e.message
+                                        details: 'Error processing record with internal ID: ' + internalId + '. ' + e.message
                                     });
                                 }
+                                // return true;
                             });
                         }
-                    });
+                    }); 
                 }
             });
         }  
-
-        
-        
+        log.debug('Scheduled Script End', 'Scheduled Script Execution Completed');
    }
 
     return {
